@@ -8,7 +8,7 @@
 
 
 ## Description
-Basic web forecast app, which allows to search for city or zip forecast and displays current forecast + 5 day forecast by default. The app does work with the local storage to save and retrieve previous forecast searches. By default app is set to look at San Francisco weather. 
+Basic web forecast app, which allows to search for city or zip forecast and displays current forecast + 5 day forecast by default. The app does work with the local storage to save and retrieve previous forecast searches. By default app is set to look at Los Angeles weather. 
 
 
 ## Walkthrough Video 
