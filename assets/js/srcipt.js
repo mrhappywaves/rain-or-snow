@@ -1,6 +1,6 @@
 const apiKey = 'a56d6b991f888d181b4cac2554707932';
 
-// Set necessary variables
+// Instantiate necessary variables to work with from the html page 
 var cityInput = document.querySelector('#cityInput');
 var cityButton = document.querySelector('#cityButton');
 var zipInput = document.querySelector('#zipInput');
@@ -8,17 +8,18 @@ var zipButton = document.querySelector('#zipButton');
 var sideNav = document.querySelector('#sideNav');
 var currentWeather = document.querySelector('#currentWeather');
 var forecastWeather = document.querySelector('#forecastWeather');
+
+// Read the stored previous searches from the localStorage
+var currentCity = localStorage.getItem('currentCity') || 'Los Angeles';
+var cityArray = JSON.parse(localStorage.getItem('cityArray')) || [];
 var currentCoords = {
     lat: 0,
     lon: 0
 };
 
-// Check the localStorage for previous searches
-var currentCity = localStorage.getItem('currentCity') || 'San Francisco';
-var cityArray = JSON.parse(localStorage.getItem('cityArray')) || [];
-
-// Function for getting weather data based on the searchParam
-// searchParam can be a ZIP code number or a city name
+// Function for calling open weather API based on the searchParam
+// searchParam can be a ZIP code number
+// or a city name
 var getWeatherData = function (searchParam) {
 
     console.log(typeof(searchParam));
@@ -60,7 +61,7 @@ var getWeatherData = function (searchParam) {
         });
 }
 
-// Handle city name search 
+// Hanlde the city name weather forecast search
 var cityButtonClick = function () {
     let currentCity = cityInput.value;
     if (currentCity) {
@@ -74,7 +75,7 @@ var cityButtonClick = function () {
     }
 }
 
-// Handle zip code search
+// Hanlde the ZIP weather forecast search
 var zipButtonClick = function () {
     let currentZip = zipInput.value;
     if (currentZip) {
@@ -88,14 +89,7 @@ var zipButtonClick = function () {
     }
 }
 
-// Handle enter key press the same way as clicking the get forecast button.
-var handleEnter = function(event) {
-    if (event.keyCode === 13) {
-        forecastSearch();
-    }
-}
-
-// Push searchParam to local storage if it doesn't exist there
+// Push the searchParam to local storage if it doesn't already exist there
 var localStoragePush = function (searchParam) {
     let altParamToString = '';
 
@@ -115,7 +109,7 @@ var localStoragePush = function (searchParam) {
     getWeatherData(searchParam);
 }
 
-// Simple function for displaying the UV index  
+// Simple function for displayinga UV index 
 var getUvIndexColor = function (uvi) {
     if ( uvi < 3 ) {
         return 'green';
@@ -126,9 +120,7 @@ var getUvIndexColor = function (uvi) {
     }
 }
 
-// Function for current weather forecast display
-// The function takes the data generated from the Weather API call
-// and the cityName in case if we are pulling existing city name from local storage
+// Create a component for a current/today's weather forecast display 
 var drawCurrent = function (data, cityName) {
     //Clear existing weather data.
     currentWeather.innerHTML = '';
@@ -161,7 +153,7 @@ var drawCurrent = function (data, cityName) {
     currentWeather.appendChild(uvindex);
 }
 
-// Function for generating a card for a set of weather forecast cards
+// Create a single card for the extended forecast 
 var createCard = function (data) {
     // Create card elements
     var cardDiv = document.createElement('div');
@@ -200,7 +192,7 @@ var createCard = function (data) {
     return cardDiv;
 }
 
-// Function for generating the cards for 5 day forecasts using createCard function
+// Function for generating 5 day weather forecast
 var drawForecast = function (data) {
     forecastWeather.innerHTML = ''
     for (var i = 1; i <= 5; i++) {
@@ -210,7 +202,7 @@ var drawForecast = function (data) {
 
 }
 
-// Function for updating the weather data 
+// Function for updating weather forecast display
 var updateWeatherDisplay = function (data, cityName) {
     timeZoneOffset = data.timezone_offset;
     drawCurrent(data.current, cityName);
@@ -238,6 +230,7 @@ var updateSideNav = function () {
     }
 }
 
+// Add event listeneres to the button clicks 
 cityButton.addEventListener('click', cityButtonClick);
 zipButton.addEventListener('click', zipButtonClick);
 
@@ -246,9 +239,17 @@ if (cityArray) {
     updateSideNav();
 }
 
+// Handle enter key press the same way as clicking the get forecast button.
+var handleEnter = function(event) {
+    if (event.keyCode === 13) {
+        forecastSearch();
+    }
+}
+
+// Add event listeneres for the enter clicks
 cityInput.addEventListener('keyup', handleEnter);
 
-// Function for generating the data upon page load
+// Show the forecast on app load 
 var init = function() {
     if (currentCity) {
         if(isNaN(currentCity)) {
@@ -259,7 +260,7 @@ var init = function() {
     }
 }
 
-// Calling init function above
+// Initiate the function above
 init();
 
 
