@@ -1,0 +1,59 @@
+body {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-repeat: none;
+}
+
+main {
+    opacity: 0.9;
+}
+
+.green {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.yellow {
+    background-color: yellow;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.red {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.weather-icon {
+    width: 75px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.custom-card {
+    max-width: 19%;
+}
+
+.custom-list {
+    list-style-type: none;
+}
+
+#forecastWeather {
+    margin-left: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    #weather-area {
+        order: 2;
+    }
+}
