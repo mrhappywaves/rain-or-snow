@@ -28,7 +28,7 @@ var getWeatherData = function (searchParam) {
     let cityName = '';
 
     if (typeof(searchParam) === 'number') {
-        initialFetchURL = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + searchParam + '&appid=' + apiKey;
+        initialFetchURL = 'https://api.openweathermap.org/geo/1.0/zip?zip=' + searchParam + '&appid=' + apiKey;
         switchValue = true; 
     }
 
