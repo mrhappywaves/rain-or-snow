@@ -22,8 +22,6 @@ var currentCoords = {
 // or a city name
 var getWeatherData = function (searchParam) {
 
-    console.log(typeof(searchParam));
-
     let initialFetchURL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchParam + '&limit=1&appid=' + apiKey;
     let switchValue = false;
     let secondaryFetchURL = '';
@@ -39,7 +37,7 @@ var getWeatherData = function (searchParam) {
         .then((response) => {
             return response.json();
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
 
             if (switchValue) {
                 secondaryFetchURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&units=imperial&appid=' + apiKey;
@@ -53,11 +51,11 @@ var getWeatherData = function (searchParam) {
                 .then((response) => {
                     return response.json();
                 }).then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     updateWeatherDisplay(data, cityName);
                 })
         }).catch((err) => {
-            console.error('outer', err.message);
+            console.error('ERROR!', err.message);
         });
 }
 
