@@ -16,8 +16,8 @@ https://user-images.githubusercontent.com/94947579/165890558-3087c01a-7361-427b-
 
 
 ## Project Links
-- Visit https://mrhappywaves.github.io/schedule-busy-day/ to use the application
-- Git repository: https://github.com/mrhappywaves/schedule-busy-day
+- Visit https://mrhappywaves.github.io/rain-or-snow/ to use the application
+- Git repository: https://github.com/mrhappywaves/rain-or-snow
 
 
 ## Miscelaneous 
